@@ -8,6 +8,17 @@ package p02_SYSTEM_DESIGN.DESIGN_PATTERN.T01_Behavioural_Design.L03_Strategy_Pat
 
  */
 
+/*
+
+📌 Strategy Pattern Solution
+Instead of hardcoding behavior inside one class, we define a family of strategies (algorithms), and make them interchangeable.
+
+🔑 Steps:
+1. Create an interface (Strategy) – defines the common behavior (e.g., trade()).
+2. Implement concrete strategies – each class has its own version of trade().
+3. Use composition – the Trader class gets a strategy injected, and it can switch strategies at runtime.
+ */
+
 
 // Strategy
 interface PaymentStrategy{

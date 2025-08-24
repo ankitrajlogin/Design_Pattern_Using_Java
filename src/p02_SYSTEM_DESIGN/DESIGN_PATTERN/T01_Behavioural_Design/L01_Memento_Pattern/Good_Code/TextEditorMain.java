@@ -17,6 +17,60 @@ Different from Command → Command = actions; Memento = state snapshots.
  */
 
 
+/*
+****************************************************************
+ ****************************************************************
+
+ 🛠️ What We Actually Do in Memento Pattern
+
+ 1. Originator (the object we want to save/restore)
+ -> The main object whose state can change.
+ -> Example: TextEditor or GraphicEditor.
+ -> It has:
+     save() → makes a new Memento with the current state.
+     restore(Memento) → restores state from a given Memento.
+
+ 2. Memento (snapshot container)
+-> A simple object that stores the state (like a photo 📸).
+-> It doesn’t allow external modification (usually immutable).
+-> Example: TextMemento, EditorMemento.
+
+3. Caretaker (history manager)
+-> Holds a list (stack) of Mementos.
+-> Manages undo/redo operations.
+-> Example: History, Caretaker.
+
+
+ 🔄 Flow of Actions
+ User edits text (Originator state changes)
+ → editor.setText("Hello")
+
+ User saves state
+ → undoStack.push(editor.save())
+ (Now we stored a memento snapshot)
+
+ User makes more changes
+ → editor.setText("Hello World")
+
+ User clicks Undo
+ → editor.restore(undoStack.pop())
+ (We restore the previous state from memento)
+
+
+
+ ✅ Key Idea
+ 👉 We’re separating responsibilities:
+ The Originator knows how to save & restore itself.
+ The Memento just stores state safely.
+ The Caretaker manages history of states.
+ This way, we can go back in time without exposing private details of the object.
+
+
+ ****************************************************************
+ ************************************************************************
+ */
+
+
 // Memento : Store the state
 class TextMemento{
     private final String state ;

@@ -21,6 +21,45 @@ The actual object being observed.
 Objects that need updates when the subject changes.
  */
 
+
+
+/*
+📌 Observer Pattern – What We’re Doing
+📝 Problem it Solves
+
+Imagine a stock market 📈.
+-> When the price of a stock changes, you don’t want only one person to know.
+-> Instead, all subscribed investors (observers) should automatically get notified.
+
+So, we need a system where one subject (stock) automatically notifies multiple observers (investors) whenever its state changes.
+
+🛠️ What We Do in Observer Pattern
+
+1. Subject (Publisher) → The main object whose state changes.
+-> Example: Stock class.
+-> It keeps a list of observers.
+-> When the state (price) changes, it notifies all observers.
+
+2. Observer (Subscriber) → Objects that want to be updated when subject changes.
+-> Example: Investor class.
+-> They subscribe/unsubscribe to the subject.
+-> When notified, they react accordingly (e.g., buy/sell stock).
+
+3. Decoupling → Subject doesn’t need to know details of observers.
+-> It only calls a method like update(price).
+-> This makes the system flexible (we can add/remove observers anytime).
+
+⚡ In Simple Words
+Think of YouTube 📺:
+-> A channel is the Subject.
+-> Subscribers are the Observers.
+-> When the channel uploads a new video (state change), all subscribers get notified automatically.
+
+ */
+
+
+
+
 // Observer Interface
 interface Observer{
     void update(String news) ;

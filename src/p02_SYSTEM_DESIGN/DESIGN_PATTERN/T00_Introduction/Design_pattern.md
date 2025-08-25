@@ -221,23 +221,33 @@ They go beyond classes/objects and focus on **overall software architecture**.
 
 ---
 
-# 🟢 ***Behavioral Design Pattern***
+[//]: # ()
+[//]: # (# 🟢 ***Behavioral Design Pattern***)
 
-**Behavioral design patterns** are concerned with how objects interact and communicate with each other.  
-They help **divide responsibilities** and make communication more **flexible and reusable**.
+[//]: # ()
+[//]: # (**Behavioral design patterns** are concerned with how objects interact and communicate with each other.  )
 
----
+[//]: # (They help **divide responsibilities** and make communication more **flexible and reusable**.)
 
-## In Simple Words
+[//]: # ()
+[//]: # (---)
 
-Imagine a sports team 🏏:
+[//]: # ()
+[//]: # (## In Simple Words)
 
-- Each player has a different role (batsman, bowler, wicketkeeper).
-- They need to communicate properly to win.
+[//]: # ()
+[//]: # (Imagine a sports team 🏏:)
 
-👉 **Behavioral patterns define rules of communication so that no one gets confused.**
+[//]: # ()
+[//]: # (- Each player has a different role &#40;batsman, bowler, wicketkeeper&#41;.)
 
+[//]: # (- They need to communicate properly to win.)
 
+[//]: # ()
+[//]: # (👉 **Behavioral patterns define rules of communication so that no one gets confused.**)
+
+[//]: # ()
+[//]: # ()
 
 
 

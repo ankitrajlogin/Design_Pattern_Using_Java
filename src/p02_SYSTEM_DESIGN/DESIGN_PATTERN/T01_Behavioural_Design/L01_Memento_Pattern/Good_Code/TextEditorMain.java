@@ -111,7 +111,6 @@ class TextEditor{
 
 // CareTaker : Manges undo/redo
 
-
 class Caretaker {
     private Stack<TextMemento> undoStack = new Stack<>();
     private Stack<TextMemento> redoStack = new Stack<>();
@@ -182,5 +181,11 @@ Key insight
 - Only when you continue undoing, you go further back in history.
 - This is because your undoStack contains snapshots after each save, including the latest state.
 - Some implementations don’t push the latest state to undoStack until the next change to avoid this “first undo looks like no change” effect.
+
+
+Example :
+1. Games (Save/Load Game Progress)
+2. Image Editing Software (Restore Original Image)
+3. Online Forms (Auto Save)
 
  */

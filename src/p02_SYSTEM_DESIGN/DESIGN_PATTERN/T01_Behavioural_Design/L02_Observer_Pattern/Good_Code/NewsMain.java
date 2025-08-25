@@ -121,6 +121,20 @@ class NewsPaper implements Observer {
     }
 }
 
+class SocialMedia implements Observer{
+    private String MediaName ;
+
+    public SocialMedia(String name){
+        this.MediaName = name ;
+    }
+
+    @Override
+    public void update(String news) {
+        System.out.println(MediaName + " which is social media , received news: " + news) ;
+    }
+
+}
+
 
 public class NewsMain {
     public static void main(String[] args){
@@ -135,6 +149,13 @@ public class NewsMain {
         agency.addObserver(paper);
 
         agency.setNews("Observer Pattern implemented in Java !");
+
+        Observer newapp = new SocialMedia("newapp") ;
+        agency.addObserver(newapp);
+
+        agency.removeObserver(channel1);
+
+        agency.setNews("Ambani son married broke") ;
 
     }
 }

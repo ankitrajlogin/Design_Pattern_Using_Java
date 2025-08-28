@@ -37,6 +37,7 @@ abstract class Beverage{
         addCondiments()  ;
     }
 
+    // hook --> optionally override (as we use default implementation)
     private void boilWater(){
         System.out.println("Boiling water") ;
     }

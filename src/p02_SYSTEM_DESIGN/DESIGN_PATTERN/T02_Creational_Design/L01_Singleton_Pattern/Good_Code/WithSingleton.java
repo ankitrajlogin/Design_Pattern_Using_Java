@@ -45,6 +45,11 @@ class AppSettings{
     public String getApikey(){
         return apikey ;
     }
+
+    //    To prevent cloning of a Singleton object, you need to override the clone() method inside your Singleton class and throw an exception.
+    protected AppSettings clone() throws CloneNotSupportedException {
+        throw new CloneNotSupportedException("Cloning of this singleton is not allowed");
+    }
 }
 
 public class WithSingleton {
@@ -136,4 +141,19 @@ step3 : Public static method → controls access, ensures only one object is cre
 
 ✅ End Result:
 Only one AppSettings object exists in the application, and all parts of the program use the same configuration settings consistently.
+ */
+
+
+/*
+✅ Valid way to prevent cloning in Singleton:
+@Override
+protected Object clone() throws CloneNotSupportedException {
+    throw new CloneNotSupportedException("Cloning of this singleton is not allowed");
+}
+
+🔎 Why this works?
+    - By default, Object.clone() creates a new copy of the object, which breaks Singleton.
+    - Overriding it and throwing CloneNotSupportedException ensures no new copy is created.
+    - This way, the Singleton object is preserved.
+
  */

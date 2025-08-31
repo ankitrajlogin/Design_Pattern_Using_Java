@@ -19,6 +19,11 @@ class Logger{
     public void log(String msg){
         System.out.println("LOG: " + msg);
     }
+
+//    To prevent cloning of a Singleton object, you need to override the clone() method inside your Singleton class and throw an exception.
+    protected Logger clone() throws CloneNotSupportedException {
+        throw new CloneNotSupportedException("Cloning of this singleton is not allowed");
+    }
 }
 
 

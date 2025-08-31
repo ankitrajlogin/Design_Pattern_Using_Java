@@ -109,3 +109,20 @@ public class GoodExample {
     - Easier to extend: Add 10 more airplanes → no changes in existing ones.
     - Real-world analogy: Works exactly like real air traffic control.
  */
+
+
+/*
+Difference between Observer and Mediator
+| Aspect                  | Observer                                | Mediator                                   |
+| ----------------------- | --------------------------------------- | ------------------------------------------ |
+| **Communication Style** | One-to-many (Publisher → Subscribers)   | Many-to-many, but centralized via Mediator |
+| **Focus**               | Automatic state update across observers | Centralizing communication logic           |
+| **Coupling**            | Decouples subject from observers        | Decouples colleagues by using mediator     |
+| **Example**             | YouTube channel & subscribers           | Air traffic control tower                  |
+
+
+
+🔑 In short:
+    - Use Observer when you want dependent objects to automatically update on state change.
+    - Use Mediator when you want to simplify complex many-to-many communication into a single hub.
+ */

@@ -1,4 +1,4 @@
-package p02_SYSTEM_DESIGN.PROJECTS.P1_Ride_Sharing_App;
+package p02_SYSTEM_DESIGN.PROJECTS.P2_Ride_Sharing_App;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;

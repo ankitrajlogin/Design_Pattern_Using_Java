@@ -1,4 +1,5 @@
-# Object-Oriented Programming (OOP) in Java
+
+<h1 style="color: Green; ">Object-Oriented Programming (OOP) in Java</h1>
 
 Java is a **purely object-oriented** programming language (with some procedural features) that follows the OOP paradigm. OOP helps in **modular, reusable, and maintainable** code.
 
@@ -146,9 +147,13 @@ public class Main {
 
 ## 1. Encapsulation
 
-Hiding fields and providing controlled access using getters and setters.
-- Encapsulation means bundling the data (fields) and the methods that operate on that data into a single unit (class).
-- It also means restricting direct access to that data by making it private and providing controlled access via getter and setter methods.
+Hiding fields and providing controlled access using getters and setters.        
+**Encapsulation = Data hiding + controlled access**   
+
+Encapsulation means:
+- keeping data private
+- allowing access through methods
+- protecting object integrity
 
 ```java 
 class Account {
@@ -164,9 +169,15 @@ class Account {
 }
 ```
 
+Advantages of Encapsulation
+- Security → protects data from unauthorized access
+- Control → validation before changing data
+- Flexibility → internal code can change without affecting users
+- Maintainability → easier to manage large programs
+
 ## 2. Inheritance
 - Inheritance is a mechanism where one class (child/subclass) acquires properties and behaviors (fields & methods) from another class (parent/superclass).
-- Purpose: Code reusability and to represent "is-a" relationships.
+- Purpose: Code reusability, Reducing duplication and to represent "is-a" relationships.
 
 ```java
 class Animal {
@@ -233,52 +244,402 @@ public class Main {
 8.7
 ```
 
+### B) Run-Time Polymorphism (Late Binding)
 
+- Achieved through **Method Overriding**.
+- Decision of which method to call is made at **runtime** based on the actual object type.
+- Same method signature in superclass and subclass, but behavior differs.
 
-
-
-## Abstraction
-
-### Using abstract classes.
-
+#### Example:
 ```java
-abstract class Shape {
-    abstract void draw();
+class Animal {
+    void sound() {
+        System.out.println("Animal makes a sound");
+    }
 }
 
-class Circle extends Shape {
-    void draw() { System.out.println("Drawing Circle"); }
+class Dog extends Animal {
+    @Override
+    void sound() {
+        System.out.println("Dog barks");
+    }
 }
 
+class Cat extends Animal {
+    @Override
+    void sound() {
+        System.out.println("Cat meows");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal a1 = new Dog();
+        Animal a2 = new Cat();
+
+        a1.sound(); // calls Dog.sound()
+        a2.sound(); // calls Cat.sound()
+    }
+}
+```
+#### Output:
+
+```text
+Dog barks
+Cat meows
 ```
 
-### Interfaces
-```java
-interface Vehicle {
-    void start();
-}
+## 4. Abstraction in Java
 
-class Bike implements Vehicle {
-    public void start() { System.out.println("Bike starting..."); }
-}
+Abstraction means:
 
+```text id="6o6mcm"
+Showing only essential details and hiding internal implementation.
 ```
 
-## Method Overriding
+## Real-Life Example
 
-Same method signature in subclass.
+### Car Example
+```text
+When you drive a car:
 
-```java
-class Parent {
-    void greet() { System.out.println("Hello from Parent"); }
+You use:
+    - Steering
+    - Brake
+    - Accelerator
+
+But you do NOT know:
+  - How engine works internally
+  - Fuel injection process
+  - Internal wiring
+```
+
+You only use the functionality.
+
+This is: **Abstraction**
+
+
+## Why Abstraction is Needed
+
+* Reduces complexity
+* Improves security
+* Hides unnecessary details
+* Makes code easier to maintain
+* Focus on "what object does" instead of "how it does"
+
+
+## How Abstraction is Achieved in Java
+
+Java achieves abstraction using:
+
+1. Abstract Class
+2. Interface
+
+
+## 1. Abstract Class
+
+A class declared using:
+
+```java id="x1kh4n"
+abstract
+```
+
+keyword is called abstract class.
+
+It can contain:
+
+* Abstract methods
+* Normal methods
+* Constructors
+* Variables
+
+
+### Abstract Method
+
+A method without body.
+
+```java id="kzwvtw"
+abstract void start();
+```
+
+Only declaration, no implementation.
+
+
+
+### Syntax
+
+```java id="z3lyhb"
+abstract class Vehicle {
+
+    abstract void start();
+}
+```
+
+
+### Example of Abstraction Using Abstract Class
+
+```java id="6kh2p6"
+abstract class Animal {
+
+    abstract void sound();
+}
+```
+
+Child class must implement abstract method.
+
+```java id="w5f8dz"
+class Dog extends Animal {
+
+    @Override
+    void sound() {
+        System.out.println("Dog Barks");
+    }
+}
+```
+
+
+
+### Complete Example
+
+```java id="t2ll5t"
+abstract class Animal {
+
+    abstract void sound();
+
+    void sleep() {
+        System.out.println("Animal Sleeps");
+    }
 }
 
-class Child extends Parent {
-    void greet() { System.out.println("Hello from Child"); }
+class Dog extends Animal {
+
+    @Override
+    void sound() {
+        System.out.println("Dog Barks");
+    }
 }
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Dog d = new Dog();
+
+        d.sound();
+        d.sleep();
+    }
+}
+```
+
+### Output
+
+```text id="1ngbyf"
+Dog Barks
+Animal Sleeps
 ```
 
 ---
+
+## Important Points About Abstract Class
+
+### 1. Cannot Create Object
+
+❌ Invalid:
+
+```java id="3gkgpo"
+Animal a = new Animal();
+```
+
+Because abstract class is incomplete.
+
+
+
+### 2. Can Have Constructors
+
+```java id="8qvr3z"
+abstract class Test {
+
+    Test() {
+        System.out.println("Constructor Called");
+    }
+}
+```
+
+
+### 3. Can Have Normal Methods
+
+```java id="0xjlwm"
+void show() {
+}
+```
+
+
+### 4. Can Have Variables
+
+```java id="kz0x1t"
+int x = 10;
+```
+
+
+
+### Why Abstract Class is Used
+
+Suppose every animal has:
+
+* sound()
+* sleep()
+
+But sound differs:
+
+* Dog → Bark
+* Cat → Meow
+
+So:
+
+* Common behavior → parent class
+* Specific behavior → child class
+
+This is abstraction.
+
+<br>
+<br>
+
+
+## 2. Interface in Java
+
+Interface is a blueprint of a class.
+
+It contains:
+
+* Abstract methods
+* Public static final variables
+
+Used for:   ***100% abstraction (traditionally)***
+
+
+
+### Syntax
+
+```java id="q4dq5p"
+interface Animal {
+
+    void sound();
+}
+```
+
+
+#### Implementing Interface
+
+```java id="w29xvl"
+class Dog implements Animal {
+
+    public void sound() {
+        System.out.println("Dog Barks");
+    }
+}
+```
+
+
+### Complete Example
+
+```java id="k4g85z"
+interface Vehicle {
+
+    void start();
+}
+
+class Car implements Vehicle {
+
+    public void start() {
+        System.out.println("Car Starts");
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Car c = new Car();
+
+        c.start();
+    }
+}
+```
+
+### Output
+
+```text id="xw2s74"
+Car Starts
+```
+
+
+## Why Interface is Important
+
+Java does NOT support multiple inheritance using classes.
+
+But it supports: ***Multiple inheritance using interfaces***
+
+
+
+### Example
+
+```java id="2xnpit"
+interface A {
+
+    void show();
+}
+
+interface B {
+
+    void display();
+}
+
+class Test implements A, B {
+
+    public void show() {
+        System.out.println("Show");
+    }
+
+    public void display() {
+        System.out.println("Display");
+    }
+}
+```
+
+One class implementing multiple interfaces.
+
+
+
+## Abstract Class vs Interface
+
+| Feature              | Abstract Class    | Interface             |
+| -------------------- | ----------------- | --------------------- |
+| Keyword              | `abstract class`  | `interface`           |
+| Methods              | Abstract + Normal | Mostly abstract       |
+| Variables            | Any type          | `public static final` |
+| Constructors         | Allowed           | Not allowed           |
+| Multiple Inheritance | No                | Yes                   |
+| Access Modifier      | Any               | Methods are public    |
+
+---
+
+
+<br>
+
+
+
+# Abstraction vs Encapsulation
+
+| Abstraction                             | Encapsulation                    |
+| --------------------------------------- | -------------------------------- |
+| Hides implementation                    | Hides data                       |
+| Focus on functionality                  | Focus on security                |
+| Achieved using abstract class/interface | Achieved using private variables |
+
+
+
+
+<br>
 
 ## final Keyword
 
@@ -286,7 +647,7 @@ class Child extends Parent {
 - **final method** — cannot be overridden.
 - **final class** — cannot be inherited.
 
----
+<br>
 
 ## super Keyword
 
@@ -304,8 +665,7 @@ class Dog extends Animal {
     }
 }
 ```
-
----
+<br>
 
 ## Access Modifiers
 
@@ -585,7 +945,7 @@ Engine   Wheels
        Car
 ```
 
-## 4️⃣ Important Keywords in Inheritance
+## Important Keywords in Inheritance
 
 **super Keyword**  
 Used to call parent’s constructor or methods.
@@ -613,17 +973,115 @@ class Dog extends Animal {
 final class Animal {} // can't be extended
 ```
 
-## 5️⃣ Method Overriding (Runtime Polymorphism)
+
+### ✅ Summary Table of Inheritance Patterns in Java
+
+| Type        | Supported by Classes? | Supported by Interfaces? |
+|-------------|----------------------|--------------------------|
+| Single      | ✅                    | ✅                        |
+| Multilevel  | ✅                    | ✅                        |
+| Hierarchical| ✅                    | ✅                        |
+| Multiple    | ❌                    | ✅                        |
+| Hybrid      | ❌                    | ✅                        |
+
+---
+
+
+## 4️⃣ Method Overloading in Java ( Compile-time Polymorphism)
+
+Method Overloading means creating multiple methods with the same name but with different parameters in the same class.
+
+The compiler decides which method to call based on:
+- Number of arguments
+- Type of arguments
+- Order of arguments
+
+This is an example of Compile-Time Polymorphism.
+
+### Types of Method Overloading
+1. Changing Number of Parameters
+2. Changing Data Type of Parameters
+3. Changing Order of Parameters
+
+Example: 
 
 ```java
-class Animal {
-    void sound() { System.out.println("Animal sound"); }
+class Calculator {
+
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    double add(double a, double b) {
+        return a + b;
+    }
+
+    public static void main(String[] args) {
+
+        Calculator c = new Calculator();
+
+        System.out.println(c.add(5, 10));
+        System.out.println(c.add(5.5, 10.5));
+    }
+}
+```
+
+## 5️⃣ Method Overriding (Runtime Polymorphism)
+
+Method Overriding happens when a child class provides its own implementation of a method that already exists in the parent class.
+
+The method in child class:
+- Must have the same name
+- Same parameters
+- Same return type (or covariant return type)
+
+This is used to achieve: **Runtime Polymorphism**
+
+Real Life Example : 
+
+```java
+class Vehicle {
+
+    void start() {
+        System.out.println("Vehicle Starts");
+    }
 }
 
-class Dog extends Animal {
+class Bike extends Vehicle {
+
     @Override
-    void sound() { System.out.println("Bark"); }
+    void start() {
+        System.out.println("Bike Starts with Kick");
+    }
 }
+
+class Car extends Vehicle {
+
+    @Override
+    void start() {
+        System.out.println("Car Starts with Button");
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Vehicle v;
+
+        v = new Bike();
+        v.start();
+
+        v = new Car();
+        v.start();
+    }
+}
+```
+
+OUTPUT : 
+```
+Bike Starts with Kick
+Car Starts with Button
 ```
 
 ## 6️⃣ Constructors and Inheritance
@@ -645,34 +1103,179 @@ class Child extends Parent {
 
 ## 7️⃣ Object Class in Inheritance
 
-Every class in Java implicitly inherits from Object class.
+### In Java, every class directly or indirectly inherits from the:
+
+
+It is the root (topmost) class of Java inheritance hierarchy.
+```text
+Every class in Java is a child of Object class
+```
+
+Even if you do not write:
 
 ```java
-class MyClass { }
+extends Object
+```
+
+Java automatically adds it.
+
+### Example
+
+```java
+class Student {
+
+}
+```
+
+Java internally treats it as:
+
+```java
+class Student extends Object {
+
+}
+```
+
+
+### Hierarchy
+
+```text
+          Object
+             |
+        -------------
+        |           |
+     Student      Animal
+```
+
+All classes inherit methods from Object class.
+
+---
+
+## Why Object Class is Important?
+
+Because it provides common methods that every Java object can use.
+
+Examples:
+
+* `toString()`
+* `equals()`
+* `hashCode()`
+* `getClass()`
+* `clone()`
+* `finalize()`
+* `wait()`
+* `notify()`
+
+---
+
+## Object Class Package
+
+```java
+java.lang.Object
+```
+
+Since `java.lang` is automatically imported, we can directly use `Object`.
+
+
+
+## Syntax
+
+```java
+public class Object
+```
+
+
+## Common Methods of Object Class
+
+| Method       | Purpose                   |
+| ------------ | ------------------------- |
+| `toString()` | Converts object to string |
+| `equals()`   | Compares objects          |
+| `hashCode()` | Returns hash value        |
+| `getClass()` | Returns class information |
+| `clone()`    | Creates object copy       |
+| `wait()`     | Makes thread wait         |
+| `notify()`   | Wakes waiting thread      |
+
+
+
+###  toString() Method
+Used to return string representation of object.
+
+### Default Behavior
+
+```java
+class Student {
+
+}
+
 public class Main {
+
     public static void main(String[] args) {
-        MyClass obj = new MyClass();
-        System.out.println(obj.toString()); // from Object class
+
+        Student s = new Student();
+
+        System.out.println(s);
     }
 }
 ```
 
-## ✅ Summary Table of Inheritance Patterns in Java
+### Output
 
-| Type        | Supported by Classes? | Supported by Interfaces? |
-|-------------|----------------------|--------------------------|
-| Single      | ✅                    | ✅                        |
-| Multilevel  | ✅                    | ✅                        |
-| Hierarchical| ✅                    | ✅                        |
-| Multiple    | ❌                    | ✅                        |
-| Hybrid      | ❌                    | ✅                        |
+```text
+Student@36baf30c
+```
 
+Format:
 
-
-
+```text
+ClassName@HashCode
+```
 
 
-# `super`
+
+## Overriding toString()
+
+```java
+class Student {
+
+    int id;
+    String name;
+
+    Student(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return id + " " + name;
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Student s = new Student(101, "Ankit");
+
+        System.out.println(s);
+    }
+}
+```
+
+### Output
+
+```text
+101 Ankit
+```
+
+---
+<br>
+<br>
+
+
+
+# `super` KEYWORD
 
 In Java, `super` is a reference to the **immediate parent class** of the current object.  
 It is used in three main ways:
@@ -767,7 +1370,9 @@ class CreditCard extends Card {
 4. `super` always refers to the **immediate parent**, not grandparents.
 
 ---
-
+<br>
+<br>
+<br>
 
 
 # The Diamond Problem in Java

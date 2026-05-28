@@ -1,0 +1,7 @@
+package p04_Design_Question.Parking_Lot_System.Basic;
+
+public enum VehicleType {
+    BIKE,
+    CAR,
+    TRUCK
+}
